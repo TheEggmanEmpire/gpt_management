@@ -57,7 +57,7 @@ components:
           type: string
         filename:
           title: Filename
-          type: text
+          type: string
     DocumentChunkWithScore:
       title: DocumentChunkWithScore
       required:
@@ -91,7 +91,7 @@ components:
           type: string
         filename:
           title: Filename
-          type: text
+          type: string
         source:
           $ref: "#/components/schemas/Source"
         source_id:

@@ -74,7 +74,7 @@ SCHEMA = {
         },
         {
             "name": "filename",
-            "dataType": ["text"],
+            "dataType": ["string"],
             "description": "Filename",
         },
     ],
