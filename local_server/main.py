@@ -78,7 +78,8 @@ async def upsert_file(
         metadata_obj = DocumentMetadata(source=Source.file)
 
     #Filename field is being added automatically
-    metadata_obj.filename = file.filename
+    filename = file.filename
+    metadata_obj.filename = filename
 
     document = await get_document_from_file(file, metadata_obj)
 
