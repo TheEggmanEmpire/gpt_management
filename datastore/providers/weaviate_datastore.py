@@ -73,7 +73,7 @@ SCHEMA = {
             "description": "Document author",
         },
         {
-            "name": "Filename",
+            "name": "filename",
             "dataType": ["text"],
             "description": "Filename",
         },
