@@ -72,6 +72,11 @@ SCHEMA = {
             "dataType": ["string"],
             "description": "Document author",
         },
+        {
+            "name": "Filename",
+            "dataType": ["text"],
+            "description": "Filename",
+        },
     ],
 }
 
