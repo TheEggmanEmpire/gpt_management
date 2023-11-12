@@ -53,13 +53,22 @@ async def upsert_file(
     metadata: Optional[str] = Form(None),
 ):
     try:
+        # Extracting filename
+        filename = file.filename
+        # Print out filename into log
+        logger.info(f"Filename: {file.filename}")
+
         metadata_obj = (
             DocumentMetadata.parse_raw(metadata)
             if metadata
             else DocumentMetadata(source=Source.file)
         )
+        # Adding filename to the metadata
+        metadata_obj.filename = filename
     except:
         metadata_obj = DocumentMetadata(source=Source.file)
+
+
 
     document = await get_document_from_file(file, metadata_obj)
 

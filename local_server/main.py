@@ -73,6 +73,7 @@ async def upsert_file(
         filename = file.filename
         # Print out filename into log
         logger.info(f"Filename: {file.filename}")
+
         metadata_obj = (
             DocumentMetadata.parse_raw(metadata)
             if metadata
