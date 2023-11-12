@@ -57,19 +57,19 @@ async def upsert_file(
         filename = file.filename
         # Print out filename into log
         logger.info(f"Filename: {file.filename}")
-
+        metadata_obj.filename = filename
+        logger.info(f"Filename has been assigned to metadata.")
         metadata_obj = (
             DocumentMetadata.parse_raw(metadata)
             if metadata
             else DocumentMetadata(source=Source.file)
         )
-        # Adding filename to the metadata
-        metadata_obj.filename = filename
     except:
         metadata_obj = DocumentMetadata(source=Source.file)
 
 
-
+    metadata_obj.filename = filename
+    logger.info(f"Filename has been assigned to metadata.")
     document = await get_document_from_file(file, metadata_obj)
 
     try:
