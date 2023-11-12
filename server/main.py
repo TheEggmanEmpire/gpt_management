@@ -62,11 +62,14 @@ async def upsert_file(
         metadata_obj = (
             DocumentMetadata.parse_raw(metadata)
             if metadata
-            else DocumentMetadata(source=Source.file, filename=file.filename)
+            else DocumentMetadata(source=Source.file)
+            DocumentMetadata(filename=file.filename)
         )
     except:
-        metadata_obj = DocumentMetadata(source=Source.file, filename=file.filename)
-    metadata_obj = DocumentMetadata(source=Source.file, filename=file.filename)
+        metadata_obj = DocumentMetadata(source=Source.file)
+        metadata_obj = DocumentMetadata(filename=file.filename)
+    metadata_obj = DocumentMetadata(source=Source.file)
+    metadata_obj = DocumentMetadata(filename=file.filename)
     document = await get_document_from_file(file, metadata_obj)
 
     try:
