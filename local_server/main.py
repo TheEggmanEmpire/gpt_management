@@ -69,17 +69,19 @@ async def upsert_file(
     metadata: Optional[str] = Form(None),
 ):
     try:
+        # Extracting filename
+        filename = file.filename
         metadata_obj = (
             DocumentMetadata.parse_raw(metadata)
             if metadata
             else DocumentMetadata(source=Source.file)
         )
+        # Adding filename to the metadata
+        metadata_obj.filename = filename
     except:
         metadata_obj = DocumentMetadata(source=Source.file)
 
-    #Filename field is being added automatically
-    filename = file.filename
-    metadata_obj.filename = filename
+
 
     document = await get_document_from_file(file, metadata_obj)
 
