@@ -1,7 +1,5 @@
 from typing import List
-from openai import OpenAI
-
-client = OpenAI()
+import openai
 import os
 from loguru import logger
 
@@ -28,9 +26,9 @@ def get_embeddings(texts: List[str]) -> List[List[float]]:
 
     response = {}
     if deployment == None:
-        response = client.embeddings.create(input=texts, model="text-embedding-ada-002")
+        response = openai.Embedding.create(input=texts, model="text-embedding-ada-002")
     else:
-        response = client.embeddings.create(input=texts, deployment_id=deployment)
+        response = openai.Embedding.create(input=texts, deployment_id=deployment)
 
     # Extract the embedding data from the response
     data = response["data"]  # type: ignore
@@ -62,11 +60,15 @@ def get_chat_completion(
     # Note: Azure Open AI requires deployment id
     response = {}
     if deployment_id == None:
-        response = client.chat.completions.create(model=model,
-        messages=messages)
+        response = openai.ChatCompletion.create(
+            model=model,
+            messages=messages,
+        )
     else:
-        response = client.chat.completions.create(deployment_id = deployment_id,
-        messages=messages)
+        response = openai.ChatCompletion.create(
+            deployment_id = deployment_id,
+            messages=messages,
+        )
 
 
     choices = response["choices"]  # type: ignore
